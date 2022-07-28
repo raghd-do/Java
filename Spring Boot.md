@@ -1,9 +1,9 @@
 # Getting Started
 - [Installation](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#installation-for-windows)
 - [For Each Project setup](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#for-each-project-setup)
-  - [pom.xml]()
-  - [application.properties]()
-  - [jsp files]()
+  - [pom.xml](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#pomxml)
+  - [application.properties](https://github.com/raghd-do/Java/blob/da3feef80fb541049a98780bfaf9f19b5634fd48/Spring%20Boot.md#applicationproperties)
+  - [jsp files](https://github.com/raghd-do/Java/blob/da3feef80fb541049a98780bfaf9f19b5634fd48/Spring%20Boot.md#filejsp)
 - [Spring Data JPA](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#spring-data-jpa)
 ## Installation for Windows
 ### Maven
