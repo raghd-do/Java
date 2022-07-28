@@ -174,4 +174,4 @@ redirect
 ```
 ## MySQL Server Set-up
 #### Note: Make sure your MySQL server is running.
-in the taskbar search for `Services` click on any shown item the press `m` to filter the item. sesrch for `MySQL80` right click on it then `start` to start thr service, or `stop` to stop it when you done.
+in the taskbar search for `Services` then click to open it, click on any shown item then press `m` to filter the item. sesrch for `MySQL80` right click on it then `start` to start thr service, or `stop` to stop it when you done.
