@@ -86,8 +86,9 @@ JQuery
 WEB-INF could be named any thing BUT make sure to match the file that you will be creating under: `src/main/webapp`
 ```
 spring.mvc.view.prefix=/WEB-INF/
-
-// to connect to our Data source
+```
+to connect to our Data source
+```
 spring.datasource.url=jdbc:mysql://localhost:3306/<<YOUR_SCHEMA>>
 spring.datasource.username=<<dbuser>>
 spring.datasource.password=<<dbpassword>>
