@@ -4,6 +4,7 @@
   - [pom.xml](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#pomxml)
   - [application.properties](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#applicationproperties)
   - [jsp files](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#filejsp)
+    - [Java Standard Tags Library](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#java-standard-tags-library) 
 - [Spring Data JPA](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#spring-data-jpa)
   - [setup](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#dependencies-and-set-up)
 ## Installation for Windows
