@@ -5,7 +5,7 @@
   - [application.properties](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#applicationproperties)
   - [jsp files](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#filejsp)
 - [Spring Data JPA](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#spring-data-jpa)
-  - [SetUp](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#dependencies-and-set-up)
+  - [setup](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#dependencies-and-set-up)
 ## Installation for Windows
 ### Maven
 1. Download the latest version of Maven from this: http://maven.apache.org/download.cgi
