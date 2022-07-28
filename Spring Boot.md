@@ -17,3 +17,56 @@ C:\Program Files\Java\jdk1.7.0_51
 Download the latest version of STS ([Spring Tool Suite](https://spring.io/tools))  and install it on your system.
 
 If it is your first time launching STS, it will ask you where you want to save your projects. Choose the path you want them saved in, and that's it!
+
+
+# MVC
+### pom.xml
+tomcat
+```html
+<dependency>
+  <groupId>org.apache.tomcat.embed</groupId>
+  <artifactId>tomcat-embed-jasper</artifactId>
+</dependency>
+```
+jstl
+```html
+<dependency>
+  <groupId>javax.servlet</groupId>
+  <artifactId>jstl</artifactId>
+</dependency>
+```
+webjars
+```html
+<dependency>
+  <groupId>org.webjars</groupId>
+  <artifactId>webjars-locator</artifactId>
+  <version>0.30</version>
+</dependency>
+```
+#### for Static files
+Bootstrap
+```html
+<dependency>
+  <groupId>org.webjars</groupId>
+  <artifactId>bootstrap</artifactId>
+  <version>5.0.1</version>
+</dependency>
+```
+JQuery
+```html
+<dependency>
+  <groupId>org.webjars</groupId>
+  <artifactId>jquery</artifactId>
+  <version>3.6.0</version>
+</dependency>
+```
+#### to make the code Live and auto changed
+run time
+```html
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-devtools</artifactId>
+    <scope>runtime</scope>
+    <optional>true</optional>
+</dependency>
+```
