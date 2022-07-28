@@ -79,6 +79,13 @@ JQuery
 WEB-INF could be named any thing BUT make sure to match the file that you will be creating under: `src/main/webapp`
 ```Java
 spring.mvc.view.prefix=/WEB-INF/
+
+// to connect to our Data source
+spring.datasource.url=jdbc:mysql://localhost:3306/<<YOUR_SCHEMA>>
+spring.datasource.username=<<dbuser>>
+spring.datasource.password=<<dbpassword>>
+spring.datasource.driver-class-name=com.mysql.jdbc.Driver
+spring.jpa.hibernate.ddl-auto=update
 ```
 
 ## file.jsp
@@ -131,20 +138,14 @@ ternary operator
 ```
 if condition
 ```html
-<c:if test="${ boolean }"/>
+<c:if test="${ condition }"/></c:if>
 ```
 if else statement
 ```html
 <c:choose>
-  <c:when test="${seconds le 30 }">
-    <c:out value="${seconds} is less than 30"/>
-  </c:when>
-  <c:when test="${seconds eq 30 }">
-    <c:out value="${seconds} is equal to 30"/>
-  </c:when>
-  <c:otherwise>
-    <c:out value="${seconds} is greater than 30"/>
-  </c:otherwise>
+   <c:when test="${..}">...</c:when> <!-- if condition -->
+   <c:when test="${..}">...</c:when> <!-- else if condition -->
+   <c:otherwise>...</c:otherwise>    <!-- else condition -->
 </c:choose>
 ```
 redirect
@@ -152,7 +153,7 @@ redirect
 <c:redirect url="/home"/>
 ```
 # Spring Data JPA
-## Dependencies and Set up:
+## Dependencies and Set-up:
 ### when creating new project
   - DevTools
   - JPA
@@ -171,3 +172,5 @@ redirect
     <artifactId>spring-boot-starter-data-jpa</artifactId>
 </dependency>
 ```
+## MySQL Server Set-up
+Note: Make sure your MySQL server is running. [MAMP](https://www.mamp.info/en/)
