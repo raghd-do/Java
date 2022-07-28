@@ -117,7 +117,7 @@ JS link
 ```html
 <script type="text/javascript" src="#"></script>
 ```
-### Java standard tags library
+### Java standard tags library - [more](https://www.baeldung.com/jstl)
 display
 ```html
 <c:out value="${ name }" />
@@ -200,7 +200,7 @@ You may safely remove this setting
 ```
 spring.datasource.driver-class-name=com.mysql.jdbc.Driver
 ```
-## Entity
+## Entity - class
 ### Validation Annotations
 represents an entity model for our application
 ```Java
@@ -251,4 +251,24 @@ This will not allow the createdAt column to be updated after creation
 set the Date value in a specific format pattern
 ```Java
 @DateTimeFormat(pattern="yyyy-MM-dd")
+```
+## Repository - interface
+Data repositories are where we gain access to all our data
+### Creation
+this will automatically allow us to create, read, update, and destroy our books
+it will automatically build queries from method names in your interface
+```Java
+@Repository
+public interface BookRepository extends CrudRepository<Book, Long>{
+...
+}
+```
+### Methods - [more](https://docs.spring.io/spring-data/commons/docs/current/api/org/springframework/data/repository/CrudRepository.html) | [examples](https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.query-methods.query-creation) | [query keywords](https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repository-query-keywords) | [derived query example](https://www.baeldung.com/spring-data-derived-queries)
+retrieves all - (must be declared)
+```Java
+List<Book> findAll();
+```
+save a given entity
+```Java
+save(Book);
 ```
