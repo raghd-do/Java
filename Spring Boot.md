@@ -108,7 +108,7 @@ loop
   </tr>
 </c:forEach>
 ```
-format date: takes Date object as value
+format Date (takes Date object as value)
 ```html
 <!-- taglib -->
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
