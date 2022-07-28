@@ -18,7 +18,6 @@ Download the latest version of STS ([Spring Tool Suite](https://spring.io/tools)
 
 If it is your first time launching STS, it will ask you where you want to save your projects. Choose the path you want them saved in, and that's it!
 
-
 # MVC
 ### pom.xml
 tomcat
@@ -145,4 +144,24 @@ if else statement
 redirect
 ```html
 <c:redirect url="/home"/>
+```
+# Spring Data JPA
+## Dependencies and Set up:
+#### when creating new project
+  - DevTools
+  - JPA
+  - MySQL
+  - Web
+#### or in pom.xml
+```html
+<dependency>
+    <groupId>mysql</groupId>
+    <artifactId>mysql-connector-java</artifactId>
+    <scope>runtime</scope>
+</dependency>
+
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-data-jpa</artifactId>
+</dependency>
 ```
