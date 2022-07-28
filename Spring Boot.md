@@ -1,5 +1,6 @@
 # Gitting Started
 ## Installation for Windows
+### Maven
 1. Download the latest version of Maven from this: http://maven.apache.org/download.cgi
 2. Follow the download instructions depending on your laptop/computer's operating system. For windows, download from the Binary zip archive
 3. The installation of Apache Maven is a simple process of extracting the archive and adding the bin folder with the mvn command to the PATH.
@@ -12,4 +13,4 @@
 echo %JAVA_HOME% 
 C:\Program Files\Java\jdk1.7.0_51
 ```
-  
+### Spring Tool Suite (STS)
