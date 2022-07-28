@@ -75,3 +75,74 @@ WEB-INF could be named any thing BUT make sure to match the file that you will b
 ```Java
 spring.mvc.view.prefix=/WEB-INF/
 ```
+
+### file.jsp
+#### Links
+core tag library link
+```html
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+```
+Bootstrab
+```html
+<!-- for Bootstrap CSS -->
+<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+```
+CSS link
+```html
+<link rel="stylesheet" type="text/css" href="#">
+```
+JS link
+```html
+<script type="text/javascript" src="#"></script>
+```
+#### Java standard tags
+display
+```html
+<c:out value="${ name }" />
+```
+loop
+```html
+<c:forEach var="fruit" items="${ fruits }">
+  <tr>
+    <td><c:out value="${ fruit.name }"/></td>
+    <td><c:out value="${ fruit.price }"/></td>
+  </tr>
+</c:forEach>
+```
+format date: takes Date object as value
+```html
+<!-- taglib -->
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+  
+<!-- Use -->
+<fmt:formatDate type="date" dateStyle = "long" pattern="E ', the ' d ' of ' M', ' y" value="${ date }"/>
+<fmt:formatDate type="time" timeStyle = "short" value="${ date }"/>
+```
+ternary operator
+```html
+<p style="${log.contains('lost') ? 'color: red':'color:green'}">
+  <c:out value="${log}" />
+</p>
+```
+if condition
+```html
+<c:if test="${ boolean }"/>
+```
+if else statement
+```html
+<c:choose>
+  <c:when test="${seconds le 30 }">
+    <c:out value="${seconds} is less than 30"/>
+  </c:when>
+  <c:when test="${seconds eq 30 }">
+    <c:out value="${seconds} is equal to 30"/>
+  </c:when>
+  <c:otherwise>
+    <c:out value="${seconds} is greater than 30"/>
+  </c:otherwise>
+</c:choose>
+```
+redirect
+```html
+<c:redirect url="/home"/>
+```
