@@ -48,6 +48,15 @@ webjars
   <version>0.30</version>
 </dependency>
 ```
+run time (to make the code Live and auto changed)
+```html
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-devtools</artifactId>
+    <scope>runtime</scope>
+    <optional>true</optional>
+</dependency>
+```
 ### for Static files
 Bootstrap
 ```html
@@ -63,16 +72,6 @@ JQuery
   <groupId>org.webjars</groupId>
   <artifactId>jquery</artifactId>
   <version>3.6.0</version>
-</dependency>
-```
-### to make the code Live and auto changed
-run time
-```html
-<dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-devtools</artifactId>
-    <scope>runtime</scope>
-    <optional>true</optional>
 </dependency>
 ```
 ## application.properties
