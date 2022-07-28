@@ -8,6 +8,7 @@
 - [Spring Data JPA](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#spring-data-jpa)
   - [setup](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#dependencies-and-set-up)
   - [Entity](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#entity)
+  - [Repository](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#repository---interface)
 ## Installation for Windows
 ### Maven
 1. Download the latest version of Maven from this: http://maven.apache.org/download.cgi
