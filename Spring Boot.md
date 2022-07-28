@@ -44,7 +44,7 @@ webjars
 </dependency>
 ```
 #### for Static files
-Bootstrap
+Bootstrap link
 ```html
 <dependency>
   <groupId>org.webjars</groupId>
