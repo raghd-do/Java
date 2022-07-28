@@ -14,3 +14,6 @@ echo %JAVA_HOME%
 C:\Program Files\Java\jdk1.7.0_51
 ```
 ### Spring Tool Suite (STS)
+Download the latest version of STS ([Spring Tool Suite](https://spring.io/tools))  and install it on your system.
+
+If it is your first time launching STS, it will ask you where you want to save your projects. Choose the path you want them saved in, and that's it!
