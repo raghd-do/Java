@@ -58,6 +58,13 @@ run time (to make the code Live and auto changed)
     <optional>true</optional>
 </dependency>
 ```
+validations (for the @Entity class attributes)
+```html
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-validation</artifactId>
+</dependency> 
+```
 ### for Static files
 Bootstrap
 ```html
