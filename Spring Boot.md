@@ -1,5 +1,6 @@
 # Getting Started
 - [Installation](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#installation-for-windows)
+- [For Each Project setup]()
 - [Spring Data JPA](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#spring-data-jpa)
 ## Installation for Windows
 ### Maven
@@ -20,7 +21,7 @@ Download the latest version of STS ([Spring Tool Suite](https://spring.io/tools)
 
 If it is your first time launching STS, it will ask you where you want to save your projects. Choose the path you want them saved in, and that's it!
 
-# MVC
+# For Each Project setup
 ### pom.xml
 tomcat
 ```html
