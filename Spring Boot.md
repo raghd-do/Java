@@ -77,7 +77,7 @@ spring.mvc.view.prefix=/WEB-INF/
 
 ### file.jsp
 #### Links
-core tag library link
+core tag library link 
 ```html
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 ```
@@ -94,7 +94,7 @@ JS link
 ```html
 <script type="text/javascript" src="#"></script>
 ```
-#### Java standard tags
+#### Java standard tags library
 display
 ```html
 <c:out value="${ name }" />
