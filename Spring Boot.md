@@ -177,11 +177,16 @@ redirect
 in the taskbar search for `Services` then click to open it, click on any shown item then press `m` to filter the item. sesrch for `MySQL80` right click on it then `start` to start thr service, or `stop` to stop it when you done.
 ## Project Set-up
 ### application.properties
-use `?serverTimezone=UTC` part when you have `The server time zone value 'PDT' is unrecognized or...` error
+use `?serverTimezone=UTC` part when you have `The server time zone value 'PDT' is unrecognized or...` Error
 ```
 spring.datasource.url=jdbc:mysql://localhost:3306/<<YOUR_SCHEMA>>?serverTimezone=UTC
 spring.datasource.username=<<dbuser>>
 spring.datasource.password=<<dbpassword>>
 spring.datasource.driver-class-name=com.mysql.jdbc.Driver
 spring.jpa.hibernate.ddl-auto=update
+```
+when facing a `Loading class com.mysql.jdbc.Driver'. This is deprecated.` Error
+You may safely remove this setting
+```
+spring.datasource.driver-class-name=com.mysql.jdbc.Driver
 ```
