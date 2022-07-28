@@ -276,5 +276,47 @@ List<Book> findAll();
 ```
 save a given entity
 ```Java
-save(Book);
+bookRepository.save(b)
+```
+filtering query
+```Java
+List<Book> findByDescriptionContaining(String search);
+```
+## Service - class
+Services are the business logic of our application
+### Creation
+```java
+@Service
+public class BookService {
+    private final BookRepository bookRepository;
+
+    public BookService(BookRepository bookRepository) { // independence injection
+      this.bookRepository = bookRepository;
+    }
+// Methods
+}
+```
+### Methods
+retrieve all
+```java
+public List<Book> allBooks() {
+  return bookRepository.findAll();
+}
+```
+Create a book
+```java
+public Book createBook(Book b) {
+  return bookRepository.save(b);
+}
+```
+retrieve a book by id
+```java
+public Book findBook(Long id){
+  Optional<Book> optionalBook = bookRepository.findById(id);
+  if(optionalBook.isPresent()) {
+    return optionalBook.get();
+  } else {
+    return null;			
+  }
+}
 ```
