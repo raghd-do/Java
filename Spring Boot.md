@@ -44,7 +44,7 @@ webjars
 </dependency>
 ```
 #### for Static files
-Bootstrap link
+Bootstrap
 ```html
 <dependency>
   <groupId>org.webjars</groupId>
@@ -82,7 +82,7 @@ core tag library link
 ```html
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 ```
-Bootstrab
+Bootstrab link
 ```html
 <!-- for Bootstrap CSS -->
 <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
