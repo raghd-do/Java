@@ -25,7 +25,7 @@ Download the latest version of STS ([Spring Tool Suite](https://spring.io/tools)
 If it is your first time launching STS, it will ask you where you want to save your projects. Choose the path you want them saved in, and that's it!
 
 # For Each Project setup
-### pom.xml
+## pom.xml
 tomcat
 ```html
 <dependency>
@@ -48,7 +48,7 @@ webjars
   <version>0.30</version>
 </dependency>
 ```
-#### for Static files
+### for Static files
 Bootstrap
 ```html
 <dependency>
@@ -65,7 +65,7 @@ JQuery
   <version>3.6.0</version>
 </dependency>
 ```
-#### to make the code Live and auto changed
+### to make the code Live and auto changed
 run time
 ```html
 <dependency>
@@ -75,14 +75,14 @@ run time
     <optional>true</optional>
 </dependency>
 ```
-### application.properties
+## application.properties
 WEB-INF could be named any thing BUT make sure to match the file that you will be creating under: `src/main/webapp`
 ```Java
 spring.mvc.view.prefix=/WEB-INF/
 ```
 
-### file.jsp
-#### Links
+## file.jsp
+### Links
 core tag library link 
 ```html
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -100,7 +100,7 @@ JS link
 ```html
 <script type="text/javascript" src="#"></script>
 ```
-#### Java standard tags library
+### Java standard tags library
 display
 ```html
 <c:out value="${ name }" />
@@ -153,12 +153,12 @@ redirect
 ```
 # Spring Data JPA
 ## Dependencies and Set up:
-#### when creating new project
+### when creating new project
   - DevTools
   - JPA
   - MySQL
   - Web
-#### or in pom.xml
+### or in pom.xml
 ```html
 <dependency>
     <groupId>mysql</groupId>
