@@ -1,4 +1,4 @@
-# Gitting Started
+# Getting Started
 ## Installation for Windows
 ### Maven
 1. Download the latest version of Maven from this: http://maven.apache.org/download.cgi
