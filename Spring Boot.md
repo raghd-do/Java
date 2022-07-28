@@ -202,15 +202,20 @@ You may safely remove this setting
 spring.datasource.driver-class-name=com.mysql.jdbc.Driver
 ```
 ## Entity - class
-### Validation Annotations
-represents an entity model for our application
+### Creation
 ```Java
 @Entity
-```
-sets this as a table in the database
-```Java
 @Table(name="books")
+public class Book {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    
+    // Constructor
+    // Getters & Setters
+}
 ```
+### Validation Annotations
 sets this as the primary key
 ```Java
 @Id
