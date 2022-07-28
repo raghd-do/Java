@@ -70,3 +70,8 @@ run time
     <optional>true</optional>
 </dependency>
 ```
+### application.properties
+WEB-INF could be named any thing BUT make sure to match the file that you will be creating under: `src/main/webapp`
+```Java
+spring.mvc.view.prefix=/WEB-INF/
+```
