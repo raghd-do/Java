@@ -181,11 +181,11 @@ redirect
     <artifactId>spring-boot-starter-data-jpa</artifactId>
 </dependency>
 ```
-## MySQL Server Set-up
+### MySQL Server Set-up
 #### Note: Make sure your MySQL server is running.
 in the taskbar search for `Services` then click to open it, click on any shown item then press `m` to filter the item. sesrch for `MySQL80` right click on it then `start` to start thr service, or `stop` to stop it when you done.
-## Project Set-up
-### application.properties
+### Project Set-up
+#### application.properties
 use `?serverTimezone=UTC` part when you have `The server time zone value 'PDT' is unrecognized or...` Error
 ```
 spring.datasource.url=jdbc:mysql://localhost:3306/<<YOUR_SCHEMA>>?serverTimezone=UTC
@@ -198,4 +198,14 @@ when facing a `Loading class com.mysql.jdbc.Driver'. This is deprecated.` Error
 You may safely remove this setting
 ```
 spring.datasource.driver-class-name=com.mysql.jdbc.Driver
+```
+## Entity
+### Validation Annotations
+represents an entity model for our application
+```java
+@Entity
+```
+sets this as a table in the database
+```java
+@Table(name="books")
 ```
