@@ -1,5 +1,5 @@
 # Getting Started
-  . [Installation] (https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#installation-for-windows)
+  . [Installation](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#installation-for-windows)
 ## Installation for Windows
 ### Maven
 1. Download the latest version of Maven from this: http://maven.apache.org/download.cgi
