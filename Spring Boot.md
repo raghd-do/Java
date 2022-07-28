@@ -202,10 +202,52 @@ spring.datasource.driver-class-name=com.mysql.jdbc.Driver
 ## Entity
 ### Validation Annotations
 represents an entity model for our application
-```java
+```Java
 @Entity
 ```
 sets this as a table in the database
-```java
+```Java
 @Table(name="books")
+```
+sets this as the primary key
+```Java
+@Id
+```
+sets this as an auto-incrementing value
+```Java
+@GeneratedValue(strategy = GenerationType.IDENTITY)
+```
+adds validation that the column must be in the specified range
+```Java
+@Size(min = 5, max = 200)
+```
+adds validation that the column must be at least the specified value
+```Java
+@Min(100)
+```
+adds validation that the column must be null
+```Java
+@NotNull
+```
+runs the method right before the object is created
+```Java
+@PrePersist
+protected void onCreate(){
+    this.createdAt = new Date();
+}
+```
+runs a method when the object is modified
+```Java
+@PreUpdate
+protected void onUpdate(){
+    this.updatedAt = new Date();
+}
+```
+This will not allow the createdAt column to be updated after creation
+```Java
+@Column(updatable=false)
+```
+set the Date value in a specific format pattern
+```Java
+@DateTimeFormat(pattern="yyyy-MM-dd")
 ```
