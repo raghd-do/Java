@@ -477,12 +477,13 @@ public void deleteBook(Long id) {
 ```
 ## Controller - class
 our API to execute the CRUD operations
-### Tools
+### Tools to test the API
 [PostMan](https://www.getpostman.com/apps)
 ### Creation
 ```java
-@RestController
-public class BooksApi {
+@RestController // for API requests, OR
+@Controller // render real pages
+public class BooksController {
     private final BookService bookService;
     public BooksApi(BookService bookService){
         this.bookService = bookService;
@@ -492,21 +493,33 @@ public class BooksApi {
 ```
 ### OR
 ```java
-@RestController
-public class BooksApi {
+@Controller
+public class BooksController {
     @AutoWired
     BookService bookService;
     // Methods
 }
-### Routs' Methods
-retriving all rout
+```
+### CRUD Methods
+#### retriving all books
+API
 ```java
 @RequestMapping("/api/books")
 public List<Book> index() {
     return bookService.allBooks();
 }
 ```
-creating a book rout
+JSP Views
+```java
+public String index(Model model) {
+	List<Book> books = bookService.allBooks();
+
+	model.addAttribute("books", books);
+	return "index.jsp";
+}
+```
+#### C - creating a book
+API
 ```java
 @RequestMapping(value="/api/books", method=RequestMethod.POST)
 public Book create(
@@ -519,7 +532,25 @@ public Book create(
         return bookService.createBook(book);
 }
 ```
-retriving a specific book rout
+JSP Views
+```java
+@GetMapping("/books/new")
+public String newBook(@ModelAttribute("book") Book book) {
+	return "/books/new.jsp";
+}
+
+@PostMapping("/books")
+public String create(@Valid @ModelAttribute("book") Book book, BindingResult result) {
+	if (result.hasErrors()) {
+	    return "/books/new.jsp";
+	} else {
+	    bookService.createBook(book);
+	    return "redirect:/books";
+	}
+}
+```
+### R - retriving a specific book
+API
 ```java
 @RequestMapping("/api/books/{id}")
 public Book show(@PathVariable("id") Long id) {
@@ -527,7 +558,12 @@ public Book show(@PathVariable("id") Long id) {
     return book;
 }
 ```
-updating rout
+JSP Views
+```java
+
+```
+### U - updating a specific book
+API
 ```java
 @RequestMapping(value="/api/books/{id}", method=RequestMethod.PUT)
 public Book update(
@@ -540,10 +576,19 @@ public Book update(
     return book;
 }
 ```
-deleting rout
+JSP Views
+```java
+
+```
+### D - deleting a specific book
+API
 ```java
 @RequestMapping(value="/api/books/{id}", method=RequestMethod.DELETE)
 public void destroy(@PathVariable("id") Long id) {
     bookService.deleteBook(id);
 }
+```
+JSP Views
+```java
+
 ```
