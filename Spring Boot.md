@@ -321,3 +321,47 @@ public Book findBook(Long id){
   }
 }
 ```
+## Controller
+our API to execute the CRUD operations
+### Tools
+[PostMan](https://www.getpostman.com/apps)
+### Creation
+```java
+@RestController
+public class BooksApi {
+    private final BookService bookService;
+    public BooksApi(BookService bookService){
+        this.bookService = bookService;
+    }
+    // Methods
+}
+```
+### Routs' Methods
+retrive all
+```java
+@RequestMapping("/api/books")
+public List<Book> index() {
+    return bookService.allBooks();
+}
+```
+create a book
+```java
+@RequestMapping(value="/api/books", method=RequestMethod.POST)
+public Book create(
+    @RequestParam(value="title") String title,
+    @RequestParam(value="description") String desc,
+    @RequestParam(value="language") String lang,
+    @RequestParam(value="pages") Integer numOfPages
+    ) {
+        Book book = new Book(title, desc, lang, numOfPages);
+        return bookService.createBook(book);
+}
+```
+retrive a specific book
+```java
+@RequestMapping("/api/books/{id}")
+public Book show(@PathVariable("id") Long id) {
+    Book book = bookService.findBook(id);
+    return book;
+}
+```
