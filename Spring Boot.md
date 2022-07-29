@@ -1,9 +1,9 @@
 # Getting Started
 1. [For Each Project setup](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#for-each-project-setup)
-  - [pom.xml](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#pomxml)
-  - [application.properties](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#applicationproperties)
-  - [jsp files](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#filejsp)
-    - [Java Standard Tags Library](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#java-standard-tags-library) 
+	- [pom.xml](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#pomxml)
+	- [application.properties](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#applicationproperties)
+	- [jsp files](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#filejsp)
+	- [Java Standard Tags Library](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#java-standard-tags-library) 
 2. [Routing](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#routing)
 	- [GET](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#get)
 	- [POST](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#post)
@@ -14,10 +14,11 @@
 	- [HttpSession](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#httpsession)
 	- [Flash Data](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#flash-data)
 4. [Spring Data JPA](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#spring-data-jpa)
-  - [Entity](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#entity)
-  - [Repository](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#repository---interface)
-  - [Service](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#service---class)
-  - [Controller](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#controller---class)
+	- [Entity](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#entity)
+	- [Repository](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#repository---interface)
+	- [Service](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#service---class)
+	- [Controller](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#controller---class)
+---
 ## Installation for Windows
 ### Maven
 1. Download the latest version of Maven from this: http://maven.apache.org/download.cgi
