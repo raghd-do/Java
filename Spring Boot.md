@@ -165,6 +165,121 @@ redirect
 ```html
 <c:redirect url="/home"/>
 ```
+# Routing
+## GET
+```java
+@RequestMapping(value="/home", method=RequestMethod.GET) // general way
+@RequestMapping("/home") // by defult --> Get
+@GetMapping("/home")
+```
+## POST
+```java
+@RequestMapping(value="/login", method=RequestMethod.POST)
+@PostMapping("/logint")
+```
+## PUT - for updating
+```java
+@RequestMapping(value="/update/{id}", method=RequestMethod.PUT)
+```
+## DELETE - for deleting
+```java
+@RequestMapping(value="/delete/{id}", method=RequestMethod.DELETE)
+```
+## Query Parameters
+url: `localhost:8080/?name=Cat`
+```java
+@RequestMapping("/")
+public String index(@RequestParam("name") String name) {
+    // TODO
+}
+```
+url: `localhost:8080/?name=Cat&age=3`
+```java
+@RequestMapping("/")
+public String index(
+    @RequestParam(value="name" required=false) String name, // required by defult = true
+    @RequestParam(value="age" required=false, defaultValue = "1") Integer age
+    ) {
+    // TODO
+}
+```
+## Form Submission
+```java
+@PostMapping("/login")
+public String login(
+	@RequestParam(value="email") String email,
+  @RequestParam(value="password") String password
+  ) {  
+  // CODE TO PROCESS FORM ie. check email and password  	
+  return "redirect:/home"; // redirect usually used with session
+}
+```
+## Path Variabl
+```java
+@RequestMapping("/book/{id}")
+public String showBook(@PathVariable("id") Long id) {
+    // TODO
+}
+```
+# Data Storages
+## View Model
+### getting data into the jsp file from our controller
+```java
+public String index(Model model) {
+    model.addAttribute("name", "Raghad");
+    return "index.jsp";
+}
+```
+then we call it in jsp file
+```html
+<body>
+    <p>
+        <c:out value="${name}"/>
+    </p>
+</body>
+```
+## HttpSession
+### to persist any information across requests
+will create it if doesn't exist OR update it if it does
+```java
+public String index(HttpSession session) {
+    session.setAttribute("count", 0);
+    return "index.jsp";
+}
+```
+get the session value
+```java
+public String showCount(HttpSession session, Model model) {
+  Integer currentCount = (Integer) session.getAttribute("count");
+  model.addAttribute("countToShow", currentCount);
+  return "showCount.jsp";
+}
+```
+check if it is null
+```java
+  // If the count is not already in session
+if (session.getAttribute("count") == null) {
+    // initialize the count in session
+    session.setAttribute("count", 0);
+}
+else {
+    // increment the count by 1
+    session.setAttribute("count", (Integer) session.getAttribute("count") + 1);
+}
+return "index.jsp";
+```
+## Flash Data
+is data that only persists across the next request.
+This sort of session data is very useful for things such as `error messages`, `success notification`, or anything else that you would want to show a user only immediately following their request
+```java
+@RequestMapping("/createError")
+public String flashMessages(RedirectAttributes redirectAttributes) {
+  redirectAttributes.addFlashAttribute("error", "A test error!");
+  return "redirect:/";
+}
+```
+## MySQl
+to persist data [MySQL](https://dev.mysql.com/downloads/windows/installer/8.0.html)
 # Spring Data JPA
 ## Dependencies and Set-up:
 ### when creating new project
