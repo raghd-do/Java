@@ -322,6 +322,34 @@ public Book findBook(Long id){
   }
 }
 ```
+update a spisific book
+```java
+public Book updateBook(Long id, String title, String desc, String lang, Integer numOfPages) {
+  Optional<Book> optionalBook = bookRepository.findById(id);
+  if(optionalBook.isPresent()) {
+    Book book = optionalBook.get();
+    book.setTitle(title);
+    book.setDescription(desc);
+    book.setLanguage(lang);
+    book.setNumberOfPages(numOfPages);
+    bookRepository.save(book);
+    return book;
+  }
+  return null;
+}
+```
+delete a spisific book
+```java
+public void deleteBook(Long id) throws Exception {
+  Optional<Book> optionalBook = bookRepository.findById(id);
+  if(optionalBook.isPresent()) {
+    Book book = optionalBook.get();
+    bookRepository.delete(book);
+  } else {
+    throw new Exception("Book not found");
+  }
+}
+```
 ## Controller - class
 our API to execute the CRUD operations
 ### Tools
