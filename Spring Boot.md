@@ -321,7 +321,7 @@ public Book findBook(Long id){
   }
 }
 ```
-## Controller
+## Controller - class
 our API to execute the CRUD operations
 ### Tools
 [PostMan](https://www.getpostman.com/apps)
