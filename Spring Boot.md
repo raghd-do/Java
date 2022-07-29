@@ -298,6 +298,15 @@ public class BookService {
 // Methods
 }
 ```
+### OR
+```java
+@Service
+public class BookService {
+    @AutoWired
+    BookRepository bookRepository;
+// Methods
+}
+```
 ### Methods
 retrieve all
 ```java
@@ -359,6 +368,14 @@ public class BooksApi {
     // Methods
 }
 ```
+### OR
+```java
+@RestController
+public class BooksApi {
+    @AutoWired
+    BookService bookService;
+    // Methods
+}
 ### Routs' Methods
 retriving all rout
 ```java
