@@ -560,7 +560,13 @@ public Book show(@PathVariable("id") Long id) {
 ```
 JSP Views
 ```java
+@RequestMapping("/books/{id}")
+public String show(Model model, @PathVariable("id") Long id) {
+	Book book = bookService.findBook(id);
 
+	model.addAttribute("book", book);
+	return "show.jsp";
+}
 ```
 ### U - updating a specific book
 API
