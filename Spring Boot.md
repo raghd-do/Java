@@ -1,19 +1,19 @@
 # Getting Started
-- [For Each Project setup](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#for-each-project-setup)
+1. [For Each Project setup](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#for-each-project-setup)
   - [pom.xml](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#pomxml)
   - [application.properties](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#applicationproperties)
   - [jsp files](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#filejsp)
     - [Java Standard Tags Library](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#java-standard-tags-library) 
-- [Routing](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#routing)
+2. [Routing](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#routing)
 	- [GET](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#get)
 	- [POST](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#post)
 	- [PUT](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#put---for-updating)
 	- [DELETE](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#delete---for-deleting)
-- [Data Storages](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#data-storages)
+3. [Data Storages](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#data-storages)
 	- [View Model](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#view-model)
 	- [HttpSession](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#httpsession)
 	- [Flash Data](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#flash-data)
-- [Spring Data JPA](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#spring-data-jpa)
+4. [Spring Data JPA](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#spring-data-jpa)
   - [Entity](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#entity)
   - [Repository](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#repository---interface)
   - [Service](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#service---class)
@@ -114,6 +114,10 @@ core tag library link
 ```html
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 ```
+form tag library link
+```html
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+```
 Bootstrab link
 ```html
 <!-- for Bootstrap CSS -->
@@ -171,6 +175,30 @@ if else statement
 redirect
 ```html
 <c:redirect url="/home"/>
+```
+#### Form tags
+Form
+```html
+<form:form action="/books" method="post" modelAttribute="book">
+```
+Label
+```html
+<form:label path="title">Title</form:label>
+```
+Input
+```html
+<form:input path="title"/>
+```
+```html
+ <form:input type="number" path="numberOfPages"/>
+```
+Textarea
+```html
+<form:textarea path="description"/>
+```
+Errors
+```html
+<form:errors path="language"/>
 ```
 # Routing
 ## GET
@@ -382,6 +410,14 @@ set the Date value in a specific format pattern
 ```Java
 @DateTimeFormat(pattern="yyyy-MM-dd")
 ```
+### Custom Error Messages
+adding a message to the arguments in the corresponding validation annotation
+```java
+@Size(min = 3, max = 40, message="Language must be at least 3 characters.")
+```
+```java
+@Min(value=100, message="Must be at least 100 pages.")
+```
 ## Repository - interface
 Data repositories are where we gain access to all our data
 ### Creation
@@ -491,7 +527,7 @@ public class BooksController {
     // Methods
 }
 ```
-### OR
+#### OR
 ```java
 @Controller
 public class BooksController {
@@ -503,14 +539,14 @@ public class BooksController {
 ---
 ### CRUD Methods
 #### retriving all books
-API
+##### API
 ```java
 @RequestMapping("/api/books")
 public List<Book> index() {
     return bookService.allBooks();
 }
 ```
-JSP Views
+##### JSP Views
 ```java
 public String index(Model model) {
 	List<Book> books = bookService.allBooks();
@@ -520,7 +556,7 @@ public String index(Model model) {
 }
 ```
 #### C - creating a book
-API
+##### API
 ```java
 @RequestMapping(value="/api/books", method=RequestMethod.POST)
 public Book create(
@@ -533,7 +569,10 @@ public Book create(
         return bookService.createBook(book);
 }
 ```
-JSP Views
+##### JSP Views
+`@Valid` annotation to check if the submitted object passes validation
+`BindingResult` to see if the object passed validation. **This must come immediately after the `@Valid` parameter**
+Once we have the `BindingResult` we can check if there were any errors, and then reload our form with errors if there are any.
 ```java
 @GetMapping("/books/new")
 public String newBook(@ModelAttribute("book") Book book) {
@@ -550,8 +589,14 @@ public String create(@Valid @ModelAttribute("book") Book book, BindingResult res
 	}
 }
 ```
+jsp
+```html
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<!-- part removed -->
+<form:form action="/books" method="post" modelAttribute="book">
+```
 ### R - retriving a specific book
-API
+##### API
 ```java
 @RequestMapping("/api/books/{id}")
 public Book show(@PathVariable("id") Long id) {
@@ -559,7 +604,7 @@ public Book show(@PathVariable("id") Long id) {
     return book;
 }
 ```
-JSP Views
+##### JSP Views
 ```java
 @RequestMapping("/books/{id}")
 public String show(Model model, @PathVariable("id") Long id) {
@@ -570,7 +615,7 @@ public String show(Model model, @PathVariable("id") Long id) {
 }
 ```
 ### U - updating a specific book
-API
+##### API
 ```java
 @RequestMapping(value="/api/books/{id}", method=RequestMethod.PUT)
 public Book update(
@@ -583,19 +628,19 @@ public Book update(
     return book;
 }
 ```
-JSP Views
+##### JSP Views
 ```java
 
 ```
 ### D - deleting a specific book
-API
+##### API
 ```java
 @RequestMapping(value="/api/books/{id}", method=RequestMethod.DELETE)
 public void destroy(@PathVariable("id") Long id) {
     bookService.deleteBook(id);
 }
 ```
-JSP Views
+##### JSP Views
 ```java
 
 ```
