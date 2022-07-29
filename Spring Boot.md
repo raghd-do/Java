@@ -3,7 +3,7 @@
 	- [pom.xml](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#pomxml)
 	- [application.properties](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#applicationproperties)
 	- [jsp files](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#filejsp)
-	- [Java Standard Tags Library](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#java-standard-tags-library) 
+	- [Java Standard Tags Library](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#java-standard-tags-library---more) 
 2. [Routing](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#routing)
 	- [GET](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#get)
 	- [POST](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#post)
