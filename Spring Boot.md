@@ -10,6 +10,7 @@
   - [Entity](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#entity)
   - [Repository](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#repository---interface)
   - [Service](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#service---class)
+  - [Controller](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#controller---class)
 ## Installation for Windows
 ### Maven
 1. Download the latest version of Maven from this: http://maven.apache.org/download.cgi
