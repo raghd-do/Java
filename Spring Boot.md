@@ -14,7 +14,7 @@
 	- [HttpSession](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#httpsession)
 	- [Flash Data](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#flash-data)
 4. [Spring Data JPA](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#spring-data-jpa)
-	- [Entity](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#entity)
+	- [Entity]([https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#entity](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#entity---class))
 	- [Repository](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#repository---interface)
 	- [Service](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#service---class)
 	- [Controller](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#controller---class)
