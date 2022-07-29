@@ -340,14 +340,8 @@ public Book updateBook(Long id, String title, String desc, String lang, Integer 
 ```
 delete a spisific book
 ```java
-public void deleteBook(Long id) throws Exception {
-  Optional<Book> optionalBook = bookRepository.findById(id);
-  if(optionalBook.isPresent()) {
-    Book book = optionalBook.get();
-    bookRepository.delete(book);
-  } else {
-    throw new Exception("Book not found");
-  }
+public void deleteBook(Long id) {
+  bookRepository.deleteById(id);
 }
 ```
 ## Controller - class
@@ -366,14 +360,14 @@ public class BooksApi {
 }
 ```
 ### Routs' Methods
-retrive all
+retriving all rout
 ```java
 @RequestMapping("/api/books")
 public List<Book> index() {
     return bookService.allBooks();
 }
 ```
-create a book
+creating a book rout
 ```java
 @RequestMapping(value="/api/books", method=RequestMethod.POST)
 public Book create(
@@ -386,11 +380,31 @@ public Book create(
         return bookService.createBook(book);
 }
 ```
-retrive a specific book
+retriving a specific book rout
 ```java
 @RequestMapping("/api/books/{id}")
 public Book show(@PathVariable("id") Long id) {
     Book book = bookService.findBook(id);
     return book;
+}
+```
+updating rout
+```java
+@RequestMapping(value="/api/books/{id}", method=RequestMethod.PUT)
+public Book update(
+    @PathVariable("id") Long id,
+    @RequestParam(value="title") String title, 
+    @RequestParam(value="description") String desc, 
+    @RequestParam(value="language") String lang,
+    @RequestParam(value="pages") Integer numOfPages) {
+    Book book = bookService.updateBook(id, title, desc, lang, numOfPages);
+    return book;
+}
+```
+deleting rout
+```java
+@RequestMapping(value="/api/books/{id}", method=RequestMethod.DELETE)
+public void destroy(@PathVariable("id") Long id) {
+    bookService.deleteBook(id);
 }
 ```
