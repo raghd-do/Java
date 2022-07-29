@@ -461,7 +461,7 @@ public class BookService {
 ```java
 @Service
 public class BookService {
-    @AutoWired
+    @Autowired
     BookRepository bookRepository;
 // Methods
 }
@@ -532,7 +532,7 @@ public class BooksController {
 ```java
 @Controller
 public class BooksController {
-    @AutoWired
+    @Autowired
     BookService bookService;
     // Methods
 }
