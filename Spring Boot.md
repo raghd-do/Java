@@ -500,6 +500,7 @@ public class BooksController {
     // Methods
 }
 ```
+---
 ### CRUD Methods
 #### retriving all books
 API
