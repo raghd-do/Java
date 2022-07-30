@@ -571,12 +571,14 @@ public Book create(
 }
 ```
 ##### JSP Views
+Add `@ModelAttribute` annotation and associated syntax to your render route, to bind an empty Book object to the JSP form to capture the user input.
+
 `@Valid` annotation to check if the submitted object passes validation
 `BindingResult` to see if the object passed validation. **This must come immediately after the `@Valid` parameter**
 Once we have the `BindingResult` we can check if there were any errors, and then reload our form with errors if there are any.
 ```java
 @GetMapping("/books/new")
-public String newBook(@ModelAttribute("book") Book book) {
+public String newBook(@ModelAttribute("book") Book book) { // Add empty Book object to bind it for the form
 	return "/books/new.jsp";
 }
 
