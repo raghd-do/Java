@@ -190,6 +190,7 @@ Input
 ```html
 <form:input path="title"/>
 ```
+include `step="any"` attribute to allow frections on the input number
 ```html
  <form:input type="number" path="numberOfPages"/>
 ```
