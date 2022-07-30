@@ -669,6 +669,14 @@ public String update(@Valid @ModelAttribute("book") Book book, BindingResult res
 	}
 }
 ```
+jsp
+`_method` to tell the http request the real method of the form
+```html
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<!-- part removed -->
+<form:form action="/books/${ book.id }" method="post" modelAttribute="book">
+  <input type="hidden" name="_method" value="put"/>
+```
 ### D - deleting a specific book
 ##### API
 ```java
