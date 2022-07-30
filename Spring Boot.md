@@ -199,8 +199,13 @@ Textarea
 <form:textarea path="description"/>
 ```
 Errors
+rendering error for one
 ```html
 <form:errors path="language"/>
+```
+rendering error for all
+```html
+<form:errors path="book.*" element="div" cssClass="alert alert-danger"/>
 ```
 # Routing
 ## GET
