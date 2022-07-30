@@ -760,7 +760,12 @@ public String edit(@PathVariable("id") Long id, Model model) {
 
 //	Edit Process
 @RequestMapping(value="/{id}", method=RequestMethod.PUT)
-public String update(@Valid @ModelAttribute("book") Book book, BindingResult result, @PathVariable("id") Long id, RedirectAttributes redirect) {
+public String update(
+  @Valid @ModelAttribute("book") Book book,
+  BindingResult result,
+  @PathVariable("id") Long id,
+  RedirectAttributes redirect
+  ) {
   if (result.hasErrors()) {
     redirect.addFlashAttribute("book", book);
     redirect.addFlashAttribute("org.springframework.validation.BindingResult.book", result);
