@@ -178,15 +178,15 @@ redirect
 <c:redirect url="/home"/>
 ```
 #### Form tags
-Form
+##### Form
 ```html
 <form:form action="/books" method="post" modelAttribute="book">
 ```
-Label
+##### Label
 ```html
 <form:label path="title">Title</form:label>
 ```
-Input
+##### Input
 ```html
 <form:input path="title"/>
 ```
@@ -194,11 +194,11 @@ include `step="any"` attribute to allow frections on the input number
 ```html
  <form:input type="number" path="numberOfPages"/>
 ```
-Textarea
+##### Textarea
 ```html
 <form:textarea path="description"/>
 ```
-Errors
+##### Errors
 rendering error for one
 ```html
 <form:errors path="language"/>
