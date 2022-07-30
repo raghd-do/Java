@@ -704,7 +704,18 @@ public void destroy(@PathVariable("id") Long id) {
 ```
 ##### JSP Views
 ```java
-
+@RequestMapping(value="/books/{id}", method=RequestMethod.DELETE)
+public String destroy(@PathVariable("id") Long id) {
+    bookService.deleteBook(id);
+    return "redirect:/books";
+}
+```
+jsp
+```html
+<form action="/books/${book.id}" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <button type="submit" class="btn btn-danger">Delete</button>
+</form>
 ```
 ### Extra TIP for Validation
 when a user submiting unvalid form data
