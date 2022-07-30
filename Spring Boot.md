@@ -594,6 +594,8 @@ Once we have the `BindingResult` we can check if there were any errors, and then
 // Add Form
 @GetMapping("/books/new")
 public String newBook(@ModelAttribute("book") Book book) { // Add empty Book object to bind it for the form
+// alternative way to do it is:
+// model.addAttribute("book", new Book());
 	return "/books/new.jsp";
 }
 // Add Process
@@ -679,3 +681,9 @@ public void destroy(@PathVariable("id") Long id) {
 ```java
 
 ```
+### Extra TIP for Validation
+when a user submiting unvalid form data
+redirect him to the same page with `user input` and `error messages` while mentaning the other page data in loade
+
+#### U - Updating
+```java
