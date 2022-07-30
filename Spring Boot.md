@@ -591,11 +591,12 @@ Add `@ModelAttribute` annotation and associated syntax to your render route, to 
 `BindingResult` to see if the object passed validation. **This must come immediately after the `@Valid` parameter**
 Once we have the `BindingResult` we can check if there were any errors, and then reload our form with errors if there are any.
 ```java
+// Add Form
 @GetMapping("/books/new")
 public String newBook(@ModelAttribute("book") Book book) { // Add empty Book object to bind it for the form
 	return "/books/new.jsp";
 }
-
+// Add Process
 @PostMapping("/books")
 public String create(@Valid @ModelAttribute("book") Book book, BindingResult result) {
 	if (result.hasErrors()) {
