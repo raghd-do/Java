@@ -481,13 +481,13 @@ public class BookService {
 }
 ```
 ### Methods
-retrieve all
+#### retrieve all
 ```java
 public List<Book> allBooks() {
   return bookRepository.findAll();
 }
 ```
-Create a book
+#### Create a book
 ```java
 public Book createBook(Book b) {
   return bookRepository.save(b);
@@ -504,7 +504,8 @@ public Book findBook(Long id){
   }
 }
 ```
-update a spisific book
+#### update a spisific book
+##### API
 ```java
 public Book updateBook(Long id, String title, String desc, String lang, Integer numOfPages) {
   Optional<Book> optionalBook = bookRepository.findById(id);
@@ -520,7 +521,23 @@ public Book updateBook(Long id, String title, String desc, String lang, Integer 
   return null;
 }
 ```
-delete a spisific book
+##### JSP Views
+```java
+public Book updateBook(Long id, Book ubook) {
+  Optional<Book> optionalBook = bookRepository.findById(id);
+  if(optionalBook.isPresent()) {
+    Book book = optionalBook.get();
+    book.setTitle(ubook.getTitle());
+    book.setDescription(ubook.getDescription());
+    book.setLanguage(ubook.getLanguage());
+    book.setNumberOfPages(ubook.getNumberOfPages());
+    bookRepository.save(book);
+    return book;
+  }
+  return null;
+}
+```
+#### delete a spisific book
 ```java
 public void deleteBook(Long id) {
   bookRepository.deleteById(id);
