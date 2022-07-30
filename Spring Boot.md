@@ -100,6 +100,10 @@ WEB-INF could be named any thing BUT make sure to match the file that you will b
 ```
 spring.mvc.view.prefix=/WEB-INF/
 ```
+to enable hidden input tag to specify for the request methods to be PUT or DELETE
+```
+spring.mvc.hiddenmethod.filter.enabled=true
+```
 to connect to our Data source
 ```
 spring.datasource.url=jdbc:mysql://localhost:3306/<<YOUR_SCHEMA>>
@@ -118,6 +122,10 @@ core tag library link
 form tag library link
 ```html
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+```
+to allow us to render the view on a PUT request
+```html
+<%@ page isErrorPage="true" %>
 ```
 Bootstrab link
 ```html
@@ -201,11 +209,11 @@ include `step="any"` attribute to allow frections on the input number
 ##### Errors
 rendering error for one
 ```html
-<form:errors path="language"/>
+<form:errors path="language" class="invalid-feedback"/>
 ```
 rendering error for all
 ```html
-<form:errors path="book.*" element="div" cssClass="alert alert-danger"/>
+<form:errors path="book.*" element="div" class="invalid-feedback"/>
 ```
 # Routing
 ## GET
@@ -639,7 +647,24 @@ public Book update(
 ```
 ##### JSP Views
 ```java
+// Edit form
+@GetMapping("/books/{id}/edit")
+public String edit(@PathVariable("id") Long id, Model model) {
+	Book book = bookService.findBook(id);
+	model.addAttribute("book", book);
+	return "edit.jsp";
+}
 
+// Edit Process
+@RequestMapping(value="/books/{id}", method=RequestMethod.PUT)
+public String update(@Valid @ModelAttribute("book") Book book, BindingResult result, @PathVariable("id") Long id) {
+	if (result.hasErrors()) {
+		return "edit.jsp";
+	} else {
+		bookService.updateBook(id, book);
+		return "redirect:/books";
+	}
+}
 ```
 ### D - deleting a specific book
 ##### API
