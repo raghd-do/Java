@@ -684,6 +684,8 @@ public void destroy(@PathVariable("id") Long id) {
 ### Extra TIP for Validation
 when a user submiting unvalid form data
 redirect him to the same page with `user input` and `error messages` while mentaning the other page data in loade
+
+for the `book` at the end of `org.springframework.validation.BindingResult.book` must match the `@ModelAttribute("book")` key
 #### C - Creating
 ```java
 //	Add Form
