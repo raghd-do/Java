@@ -684,8 +684,52 @@ public void destroy(@PathVariable("id") Long id) {
 ### Extra TIP for Validation
 when a user submiting unvalid form data
 redirect him to the same page with `user input` and `error messages` while mentaning the other page data in loade
+#### C - Creating
+```java
+//	Add Form
+@RequestMapping("/new")
+public String newBook(Model model) {
+  if (!model.containsAttribute("book")) { // to check if there is no user input before it will initialize one
+    model.addAttribute("book", new Book());
+  }
+  return "new.jsp";
+}
 
+//	Adding Process
+@PostMapping("/new")
+public String newBook(@Valid @ModelAttribute("book") Book book, BindingResult result, RedirectAttributes redirect) {
+  if (result.hasErrors()) {
+    redirect.addFlashAttribute("book", book); // to redirect user inputed data
+    redirect.addFlashAttribute("org.springframework.validation.BindingResult.book", result); // to redirect user error messages
+    return "redirect:/books/new";
+  } else {
+    bookService.createBook(book);
+    return "redirect:/books";
+  }
+}
+```
 #### U - Updating
 ```java
+//	Edit form
+@GetMapping("/{id}/edit")
+public String edit(@PathVariable("id") Long id, Model model) {
+  if(!model.containsAttribute("book")) {
+    Book book = bookService.findBook(id);
+    model.addAttribute("book", book);			
+  }
+  return "edit.jsp";
+}
 
+//	Edit Process
+@RequestMapping(value="/{id}", method=RequestMethod.PUT)
+public String update(@Valid @ModelAttribute("book") Book book, BindingResult result, @PathVariable("id") Long id, RedirectAttributes redirect) {
+  if (result.hasErrors()) {
+    redirect.addFlashAttribute("book", book);
+    redirect.addFlashAttribute("org.springframework.validation.BindingResult.book", result);
+    return "redirect:/books/{id}/edit";
+  } else {
+    bookService.updateBook(id, book);
+    return "redirect:/books";
+  }
+}
 ```
