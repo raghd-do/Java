@@ -188,11 +188,11 @@ redirect
 ```
 ##### Input
 ```html
-<form:input path="title"/>
+<form:input path="title" type="text" cssClass="form-control" cssErrorClass="form-control is-invalid"/>
 ```
 include `step="any"` attribute to allow frections on the input number
 ```html
- <form:input type="number" path="numberOfPages"/>
+ <form:input path="numberOfPages" type="number" cssClass="form-control" cssErrorClass="form-control is-invalid"/>
 ```
 ##### Textarea
 ```html
