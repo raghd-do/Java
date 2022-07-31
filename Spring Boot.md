@@ -446,7 +446,7 @@ public interface BookRepository extends CrudRepository<Book, Long>{
 ...
 }
 ```
-### Methods - [more](https://docs.spring.io/spring-data/commons/docs/current/api/org/springframework/data/repository/CrudRepository.html) | [examples](https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.query-methods.query-creation) | [query keywords](https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repository-query-keywords) | [derived query example](https://www.baeldung.com/spring-data-derived-queries)
+### Methods - [more](https://docs.spring.io/spring-data/commons/docs/current/api/org/springframework/data/repository/CrudRepository.html) | [search examples](https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.query-methods.query-creation) | [query keywords](https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repository-query-keywords) | [derived query example](https://www.baeldung.com/spring-data-derived-queries)
 retrieves all - (must be declared)
 ```Java
 List<Book> findAll();
