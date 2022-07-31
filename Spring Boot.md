@@ -249,8 +249,8 @@ url: `localhost:8080/?name=Cat&age=3`
 ```java
 @RequestMapping("/")
 public String index(
-    @RequestParam(value="name" required=false) String name, // required by defult = true
-    @RequestParam(value="age" required=false, defaultValue = "1") Integer age
+    @RequestParam(value="name", required=false) String name, // required by defult = true
+    @RequestParam(value="age", required=false, defaultValue = "1") Integer age
     ) {
     // TODO
 }
