@@ -78,6 +78,14 @@ validations (for the @Entity class attributes)
     <artifactId>spring-boot-starter-validation</artifactId>
 </dependency> 
 ```
+for using BCrypt
+```html
+<dependency>
+    <groupId>org.mindrot</groupId>
+    <artifactId>jbcrypt</artifactId>
+    <version>0.4</version>
+</dependency>
+```
 ### for Static files
 Bootstrap
 ```html
@@ -96,7 +104,8 @@ JQuery
 </dependency>
 ```
 ## application.properties
-WEB-INF could be named any thing BUT make sure to match the file that you will be creating under: `src/main/webapp`
+Where are jsp files? HERE!
+WEB-INF could be named any thing BUT make sure to match the file that you will be creating under: `src/main/webapp` 
 ```
 spring.mvc.view.prefix=/WEB-INF/
 ```
@@ -104,7 +113,7 @@ to enable hidden input tag to specify for the request methods to be PUT or DELET
 ```
 spring.mvc.hiddenmethod.filter.enabled=true
 ```
-to connect to our Data source
+to connect to our Data source (Data Persistence)
 ```
 spring.datasource.url=jdbc:mysql://localhost:3306/<<YOUR_SCHEMA>>
 spring.datasource.username=<<dbuser>>
@@ -115,6 +124,31 @@ spring.jpa.hibernate.ddl-auto=update
 
 ## file.jsp
 ### Links
+```html
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!-- c:out ; c:forEach etc. --> 
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!-- Formatting (dates) --> 
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<!-- form:form -->
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<!-- for rendering errors on PUT routes -->
+<%@ page isErrorPage="true" %>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Tacos</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/main.css"> <!-- change to match your file/naming structure -->
+    <script src="/webjars/jquery/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+   
+</body>
+</html>
+```
 core tag library link 
 ```html
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -122,6 +156,10 @@ core tag library link
 form tag library link
 ```html
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+```
+Formatting (dates)
+```
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 ```
 to allow us to render the view on a PUT request
 ```html
@@ -131,6 +169,10 @@ Bootstrab link
 ```html
 <!-- for Bootstrap CSS -->
 <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+```
+JQuery link
+```html
+<script src="/webjars/jquery/jquery.min.js"></script>
 ```
 CSS link
 ```html
