@@ -757,6 +757,7 @@ public String edit(@PathVariable("id") Long id, Model model) {
     Book book = bookService.findBook(id);
     model.addAttribute("book", book);			
   }
+  model.addAttriput("bookId", id); // when redirecting after an error, the book object will be an object from a form not a database so it doesn't have the ID nor the createdAt or updatedAt.
   return "edit.jsp";
 }
 
