@@ -455,9 +455,13 @@ save a given entity
 ```Java
 bookRepository.save(b)
 ```
-filtering query
+#### Filtering & Searching querys
 ```Java
 List<Book> findByDescriptionContaining(String search);
+```
+search for songs made by the brovided artist - ignore case + contain
+```java
+List<Song> findByArtistContaining(String artist);
 ```
 ## Service - class
 Services are the business logic of our application
@@ -543,6 +547,12 @@ public Book updateBook(Long id, Book ubook) {
 ```java
 public void deleteBook(Long id) {
   bookRepository.deleteById(id);
+}
+```
+#### Search
+```java
+public List<Song> findByArtist(String artist) {
+  return songRepository.findByArtistContaining(artist);
 }
 ```
 ## Controller - class
@@ -717,6 +727,22 @@ jsp
 <form action="/books/${book.id}" method="post">
   <input type="hidden" name="_method" value="delete">
   <button type="submit" class="btn btn-danger">Delete</button>
+</form>
+```
+#### S - Search
+```java
+@GetMapping("/search")
+public String search(@RequestParam("artist") String artist, Model model) {
+  List<Song> songs = songService.findByArtist(artist);
+  model.addAttribute("songs", songs);
+  return "search.jsp";
+}
+```
+jsp
+```html
+<form class="d-flex" role="search">
+  <input name="artist" class="form-control me-2" type="search" placeholder="Search Artist" aria-label="Search">
+  <button class="btn btn-outline-success" type="submit">Search</button>
 </form>
 ```
 ### Extra TIP for Validation
