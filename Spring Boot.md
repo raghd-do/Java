@@ -403,27 +403,27 @@ adds validation that the column must be null
 ```Java
 @NotNull
 ```
-runs the method right before the object is created
-```Java
-@PrePersist
-protected void onCreate(){
-    this.createdAt = new Date();
-}
-```
-runs a method when the object is modified
-```Java
-@PreUpdate
-protected void onUpdate(){
-    this.updatedAt = new Date();
-}
-```
-This will not allow the createdAt column to be updated after creation
-```Java
-@Column(updatable=false)
-```
-set the Date value in a specific format pattern
-```Java
-@DateTimeFormat(pattern="yyyy-MM-dd")
+`created at` & `updated at` columns
+```java
+// This will not allow the createdAt column to be updated after creation
+@Column(updatable = false)
+  // set the Date value in a specific format pattern
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date createdAt;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date updatedAt;
+
+  // runs the method right before the object is created
+	@PrePersist
+	protected void onCreate() {
+		this.createdAt = new Date();
+	}
+
+  // runs a method when the object is modified
+	@PreUpdate
+	protected void onUpdate() {
+		this.updatedAt = new Date();
+	}
 ```
 ### Custom Error Messages
 adding a message to the arguments in the corresponding validation annotation
