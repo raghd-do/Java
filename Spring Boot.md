@@ -230,10 +230,12 @@ rendering error for all
 ## PUT - for updating
 ```java
 @RequestMapping(value="/update/{id}", method=RequestMethod.PUT)
+@PutMApping("/update/{id}")
 ```
 ## DELETE - for deleting
 ```java
 @RequestMapping(value="/delete/{id}", method=RequestMethod.DELETE)
+@DeleteMapping("/delete/{id}")
 ```
 ## Query Parameters
 url: `localhost:8080/?name=Cat`
