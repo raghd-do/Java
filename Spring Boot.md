@@ -847,3 +847,94 @@ public String update(
   }
 }
 ```
+# Relationships
+## 1:1
+### Entity
+#### Entity 1
+`mappedBy="person"` It represents the field that owns the relationship. This element is only specified on the inverse (non-owning) side **you don't need a license to create a person, but you do need a person to create a license**!
+`fetch=FetchType.LAZY`
+- LAZY: The association is fetched when needed.
+- EAGER: The association is fetched immediately.
+```java
+@Entity
+@Table(name="persons")
+public class Person {
+  // ...
+  @OneToOne(mappedBy="person", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+  private License license;
+  // ...
+}
+```
+#### Entity 2
+`name="person_id"` Defines mapping for composite foreign keys
+```java
+@Entity
+@Table(name="licenses")
+public class License {
+  // ...
+  @OneToOne(fetch=FetchType.LAZY)
+  @JoinColumn(name="person_id")
+  private Person person;
+  // ...
+}
+```
+### JSP form
+#### Form 1
+```html
+```
+#### Form 2
+```html
+<!--- inside the form:form --->
+<form:select path="person">
+    <c:forEach var="onePerson" items="${persons}">
+        <!--- Each option VALUE is the id of the person --->
+        <form:option value="${onePerson.id}" path="person">
+        <!--- This is what shows to the user as the option --->
+            <c:out value="${onePerson.firstName}"/>
+            <c:out value="${onePerson.lastName}">
+        </form:option>
+    </c:forEach>
+</form:select>
+```
+### POST route
+```java
+@PostMapping("/licenses")
+public String licenses(@Valid @ModelAttribute("license") License license) {
+    // error handling with binding result omitted    
+    licenseService.create(license); // Already has the person!
+        
+    return "redirect:/persons";
+}
+```
+---
+## 1:n
+### Entity
+#### Entity 1
+```java
+```
+#### Entity 2
+```java
+```
+### JSP form
+#### Form 1
+```html
+```
+#### Form 2
+```html
+```
+---
+## m:n
+### Entity
+#### Entity 1
+```java
+```
+#### Entity 2
+```java
+```
+### JSP form
+#### Form 1
+```html
+```
+#### Form 2
+```html
+```
