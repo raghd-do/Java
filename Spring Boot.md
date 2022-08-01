@@ -941,6 +941,13 @@ public class Ninja {
 ### JSP form
 #### Form 1
 ```html
+<c:forEach var="ninja" items="${ dojo.ninjas }">
+  <tr>
+    <td><c:out value="${ ninja.firstName }"/></td>
+    <td><c:out value="${ ninja.lastName }"/></td>
+    <td><c:out value="${ ninja.age }"/></td>
+  </tr>		
+</c:forEach>
 ```
 #### Form 2
 ```html
