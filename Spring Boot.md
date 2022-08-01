@@ -19,9 +19,9 @@
 	- [Service](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#service---class)
 	- [Controller](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#controller---class)
 5. [Relationships](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#relationships)
-  - [1:1](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#11)
-  - [1:n](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#1n)
-  - [m:n](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#mn)
+    - [1:1](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#11)
+    - [1:n](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#1n)
+    - [m:n](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#mn)
 ---
 ## Installation for Windows
 ### Maven
