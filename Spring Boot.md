@@ -18,6 +18,7 @@
 	- [Repository](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#repository---interface)
 	- [Service](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#service---class)
 	- [Controller](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#controller---class)
+      - [Login & Registration page](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#registration--log-in-page)
 5. [Relationships](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#relationships)
     - [1:1](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#11)
     - [1:n](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#1n)
