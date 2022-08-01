@@ -473,13 +473,59 @@ protected void onUpdate() {
   this.updatedAt = new Date();
 }
 ```
-### Custom Error Messages
+#### Custom Error Messages
 adding a message to the arguments in the corresponding validation annotation
 ```java
 @Size(min = 3, max = 40, message="Language must be at least 3 characters.")
 ```
 ```java
 @Min(value=100, message="Must be at least 100 pages.")
+```
+### Regesration Model -- Entit
+```java
+@Entity
+@Table(name="users")
+public class User {
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+
+  @NotEmpty(message="Username is required!")
+  @Size(min=3, max=30, message="Username must be between 3 and 30 characters")
+  private String userName;
+
+  @NotEmpty(message="Email is required!")
+  @Email(message="Please enter a valid email!")
+  private String email;
+
+  @NotEmpty(message="Password is required!")
+  @Size(min=8, max=128, message="Password must be between 8 and 128 characters")
+  private String password;
+
+  @Transient // wont be stored in the database
+  @NotEmpty(message="Confirm Password is required!")
+  @Size(min=8, max=128, message="Confirm Password must be between 8 and 128 characters")
+  private String confirm;
+  // ...
+}
+```
+### Login Model -- not Entity
+```java
+public class LoginUser {
+    
+  @NotEmpty(message="Email is required!")
+  @Email(message="Please enter a valid email!")
+  private String email;
+  
+  @NotEmpty(message="Password is required!")
+  @Size(min=8, max=128, message="Password must be between 8 and 128 characters")
+  private String password;
+  
+  public LoginUser() {}
+  
+  // TODO - getters and setters
+    
+}
 ```
 ## Repository - interface
 Data repositories are where we gain access to all our data
@@ -500,6 +546,10 @@ List<Book> findAll();
 save a given entity
 ```Java
 bookRepository.save(b)
+```
+for registeration & login use
+```java
+Optional<User> findByEmail(String email);
 ```
 #### Filtering & Searching querys
 ```Java
@@ -601,6 +651,38 @@ public List<Song> findByArtist(String artist) {
   return songRepository.findByArtistContaining(artist);
 }
 ```
+### Registration method
+```java
+public User register(User newUser, BindingResult result) {
+    if(userRepo.findByEmail(newUser.getEmail()).isPresent()) {
+        result.rejectValue("email", "Unique", "This email is already in use!");
+    }
+    if(!newUser.getPassword().equals(newUser.getConfirm())) {
+        result.rejectValue("confirm", "Matches", "The Confirm Password must match Password!");
+    } else {
+        String hashed = BCrypt.hashpw(newUser.getPassword(), BCrypt.gensalt());
+        newUser.setPassword(hashed);
+        return userRepo.save(newUser);
+    }
+    return null;
+}
+```
+### Login method
+```java
+public User login(LoginUser newLogin, BindingResult result) {
+    Optional<User> potentialUser = userRepo.findByEmail(newLogin.getEmail());
+    if(!potentialUser.isPresent()) {
+        result.rejectValue("email", "Unique", "Unknown email!");
+        return null;
+    }
+    User user = potentialUser.get();
+    if(!BCrypt.checkpw(newLogin.getPassword(), user.getPassword())) {
+        result.rejectValue("password", "Matches", "Invalid Password!");
+        return null;
+    }
+    return user;
+}
+```
 ## Controller - class
 our API to execute the CRUD operations
 ### Tools to test the API
@@ -690,7 +772,7 @@ jsp
 <!-- part removed -->
 <form:form action="/books" method="post" modelAttribute="book">
 ```
-### R - retriving a specific book
+#### R - retriving a specific book
 ##### API
 ```java
 @RequestMapping("/api/books/{id}")
@@ -709,7 +791,7 @@ public String show(Model model, @PathVariable("id") Long id) {
 	return "show.jsp";
 }
 ```
-### U - updating a specific book
+#### U - updating a specific book
 ##### API
 ```java
 @RequestMapping(value="/api/books/{id}", method=RequestMethod.PUT)
@@ -752,7 +834,7 @@ jsp
 <form:form action="/books/${ book.id }" method="post" modelAttribute="book">
   <input type="hidden" name="_method" value="put"/>
 ```
-### D - deleting a specific book
+#### D - deleting a specific book
 ##### API
 ```java
 @RequestMapping(value="/api/books/{id}", method=RequestMethod.DELETE)
@@ -790,6 +872,128 @@ jsp
   <input name="artist" class="form-control me-2" type="search" placeholder="Search Artist" aria-label="Search">
   <button class="btn btn-outline-success" type="submit">Search</button>
 </form>
+```
+### Registration & Login
+#### GET form page
+```java
+@GetMapping("/")
+public String createUserView(Model model) {
+  if(!model.containsAttribute("newUser")) {
+    model.addAttribute("newUser", new User());
+  }
+
+  if(!model.containsAttribute("newLogin")) {
+    model.addAttribute("newLogin", new LoginUser());
+  }
+  return "index.jsp";
+}
+```
+#### POST Registration
+```java
+@PostMapping("/register")
+public String createUserAction(
+    @Valid @ModelAttribute("newUser") User newUser,
+    BindingResult result,
+    RedirectAttributes redirectAttributes,
+    HttpSession session
+    ) {
+  if(result.hasErrors()) {
+    redirectAttributes.addFlashAttribute("newUser", newUser);
+    redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.newUser", result);
+    return "redirect:/";
+  }
+  User user = userService.register(newUser, result);
+  if(user == null) {
+    redirectAttributes.addFlashAttribute("newUser", newUser);
+    redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.newUser", result);
+    return "redirect:/";
+  } else {
+    session.setAttribute("user_id", user.getId());
+    return "redirect:/loginChecker";
+  }
+}
+```
+#### POST Login
+```java
+@PostMapping("/login")
+public String loginUser(
+    @Valid @ModelAttribute("newLogin") LoginUser newLogin,
+    BindingResult result,
+    RedirectAttributes redirectAttributes,
+    HttpSession session
+    ) {
+  if(result.hasErrors()) {
+    redirectAttributes.addFlashAttribute("newLogin", newLogin);
+    redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.newLogin", result);
+    return "redirect:/";
+  }
+  
+  User user = userService.login(newLogin);
+  if(user == null) {
+    result.rejectValue("email", "invalid", "Invalid email or password.");
+    redirectAttributes.addFlashAttribute("newLogin", newLogin);
+    redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.newLogin", result);
+    return "redirect:/";
+  } else {
+    session.setAttribute("user_id", user.getId());
+    return "redirect:/loginChecker";
+  }
+}
+```
+#### Registration & Log in page
+```html
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+    
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Login & Registration</title>
+</head>
+<body>
+    
+    <form:form action="/register" method="post" modelAttribute="newUser">
+        <div class="form-group">
+            <label>User Name:</label>
+            <form:input path="userName" class="form-control" />
+            <form:errors path="userName" class="text-danger" />
+        </div>
+        <div class="form-group">
+            <label>Email:</label>
+            <form:input path="email" class="form-control" />
+            <form:errors path="email" class="text-danger" />
+        </div>
+        <div class="form-group">
+            <label>Password:</label>
+            <form:password path="password" class="form-control" />
+            <form:errors path="password" class="text-danger" />
+        </div>
+        <div class="form-group">
+            <label>Confirm Password:</label>
+            <form:password path="confirm" class="form-control" />
+            <form:errors path="confirm" class="text-danger" />
+        </div>
+        <input type="submit" value="Register" class="btn btn-primary" />
+    </form:form>
+    
+    <form:form action="/login" method="post" modelAttribute="newLogin">
+        <div class="form-group">
+            <label>Email:</label>
+            <form:input path="email" class="form-control" />
+            <form:errors path="email" class="text-danger" />
+        </div>
+        <div class="form-group">
+            <label>Password:</label>
+            <form:password path="password" class="form-control" />
+            <form:errors path="password" class="text-danger" />
+        </div>
+        <input type="submit" value="Login" class="btn btn-success" />
+    </form:form>
+    
+</body>
+</html>
 ```
 ### Extra TIP for Validation
 when a user submiting unvalid form data
