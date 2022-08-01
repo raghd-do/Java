@@ -18,6 +18,10 @@
 	- [Repository](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#repository---interface)
 	- [Service](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#service---class)
 	- [Controller](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#controller---class)
+5. [Relationships](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#relationships)
+  - [1:1](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#11)
+  - [1:n](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#1n)
+  - [m:n](https://github.com/raghd-do/Java/blob/main/Spring%20Boot.md#mn)
 ---
 ## Installation for Windows
 ### Maven
@@ -874,7 +878,7 @@ public class License {
   // ...
   @OneToOne(fetch=FetchType.LAZY)
   @JoinColumn(name="person_id")
-  private Person person;
+  private Person person; // from here we generate the (mappedBy="person") in Person class the names must be matched
   // ...
 }
 ```
@@ -910,10 +914,29 @@ public String licenses(@Valid @ModelAttribute("license") License license) {
 ## 1:n
 ### Entity
 #### Entity 1
+One `Dojo` To Many `Ninjas` - (`List<Ninja>`)
 ```java
+@Entity
+@Table(name="dojos")
+public class Dojo {
+  // ...
+  @OneToMany(mappedBy="dojo", fetch = FetchType.LAZY)
+  private List<Ninja> ninjas;
+  // ...
+}
 ```
 #### Entity 2
+Many `Ninjas` To One `Dojo`
 ```java
+@Entity
+@Table(name="ninjas")
+public class Ninja {
+  // ...
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name="dojo_id")
+  private Dojo dojo;
+  // ...
+}
 ```
 ### JSP form
 #### Form 1
