@@ -944,6 +944,24 @@ public class Ninja {
 ```
 #### Form 2
 ```html
+<!--- inside the form:form --->
+<form:select path="dojo">
+    <c:forEach var="dojo" items="${dojos}">
+        <form:option value="${dojo.id}" path="dojo">
+            <c:out value="${dojo.location}"/>
+        </form:option>
+    </c:forEach>
+</form:select>
+```
+### POST route
+```java
+@PostMapping("/ninjas")
+public String ninjas(@Valid @ModelAttribute("ninja") Ninja ninja) {
+    // error handling with binding result omitted    
+    ninjaService.create(ninja); // it will link the dojo automaticly
+        
+    return "redirect:/dojos";
+}
 ```
 ---
 ## m:n
