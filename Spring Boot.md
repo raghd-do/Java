@@ -560,6 +560,10 @@ search for songs made by the brovided artist - ignore case + contain
 ```java
 List<Song> findByArtistContaining(String artist);
 ```
+find the list of top 10 in descending order
+```java
+List<Playlist> findTop10ByOrderByRatingDesc();
+```
 ## Service - class
 Services are the business logic of our application
 ### Creation
