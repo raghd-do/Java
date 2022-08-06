@@ -1207,11 +1207,55 @@ public String ninjas(@Valid @ModelAttribute("ninja") Ninja ninja) {
 ---
 ## m:n
 ### Entity
+**`@JsonIgnore`**: We are using this annotation to solve an infinite recursion issue with Jackson and JPA. Therefore, we ignore that attribute when it's being serialized into `json`.
 #### Entity 1
 ```java
+@Entity
+@Table(name="products")
+public class Product {
+  // ...
+  @ManyToMany(fetch = FetchType.LAZY)
+  @JoinTable(
+    name = "categories_products", 
+    joinColumns = @JoinColumn(name = "product_id"), 
+    inverseJoinColumns = @JoinColumn(name = "category_id")
+  )
+  private List<Category> categories;
+  // ...
+}
+```
+#### Entity (Middle Table)
+we don't create it! it is automatically generated
+```java
+@Entity
+@Table(name="categories_products")
+public class CategoryProduct {
+  // ...
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name="product_id")
+  private Product product;
+  
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name="category_id")
+  private Category category;
+  // ...
+}
 ```
 #### Entity 2
 ```java
+@Entity
+@Table(name="categories")
+public class Category {
+  // ...
+  @ManyToMany(fetch = FetchType.LAZY)
+  @JoinTable(
+      name = "categories_products", 
+      joinColumns = @JoinColumn(name = "category_id"), 
+      inverseJoinColumns = @JoinColumn(name = "product_id")
+    )
+    private List<Product> products;
+  // ...
+}
 ```
 ### JSP form
 #### Form 1
