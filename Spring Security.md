@@ -10,7 +10,7 @@ Once we have a database connection, we can check if Spring Security is working c
 
 By default, Spring Security protects any route in your application. If you would like to log in, the default username is user and the password can be found in your console. Note, this password will be different on every server restart.
 
-## Domain Models
+## Models
 ### User
 ```Java
 @Entity
@@ -45,3 +45,17 @@ INSERT INTO `roles` (name) VALUES ('ROLE_USER');
 INSERT INTO `roles` (name) VALUES ('ROLE_ADMIN');
 ```
 Our `roles` table will be used to grant users permission to certain actions in our application. It is important to have the `ROLE_` prefix. This is how Spring Security will authorize clients in the application.
+## Repositories
+### User
+```java
+@Repository
+public interface UserRepository extends CrudRepository<User, Long> {
+    User findByUsername(String username);
+}
+```
+### Role
+```java
+@Repository
+public interface RoleRepository extends CrudRepository<Role, Long> {
+}
+```
